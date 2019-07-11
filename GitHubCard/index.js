@@ -2,6 +2,11 @@
            (replacing the palceholder with your Github name):
            https://api.github.com/users/<your name>
 */
+const promise = axios.get(`https://api.github.com/users/ebislab`)
+
+promise.then(data => {
+  console.log('response', data)
+})
 
 /* Step 2: Inspect and study the data coming back, this is YOUR 
    github info! You will need to understand the structure of this 
@@ -24,7 +29,7 @@
           user, and adding that card to the DOM.
 */
 
-const followersArray = [];
+//const followersArray = [];
 
 /* Step 3: Create a function that accepts a single object as its only argument,
           Using DOM methods and properties, create a component that will return the following DOM element:
@@ -45,6 +50,39 @@ const followersArray = [];
 </div>
 
 */
+const cardsContainer = document.querySelector('.cards');
+const cards= document.createElement('div');
+const img = document.createElement('img');
+const cardInfo= document.createElement('div');
+const h3= document.createElement('h3');
+const puser= document.createElement('p');
+const plocation= document.createElement('p');
+const pprofile= document.createElement('p');
+const alink=document.createElement('a');
+const pfollowers= document.createElement('p');
+const pfollowing= document.createElement('p');
+const pbio= document.createElement('p');
+
+cardsContainer.appendChild(cards);
+cards.appendChild(img);
+cards.appendChild(cardInfo);
+cardInfo.appendChild(h3);
+cardInfo.appendChild(puser);
+cardInfo.appendChild(plocation);
+cardInfo.appendChild(pprofile);
+pprofile.appendChild(alink)
+cardInfo.appendChild(pfollowers);
+cardInfo.appendChild(pfollowing);
+cardInfo.appendChild(pbio);
+
+cards.classList.add('card');
+//img.src=`${imageUrl}`
+//cardInfo.classList.add('card-info')
+
+
+
+
+
 
 /* List of LS Instructors Github username's: 
   tetondan
