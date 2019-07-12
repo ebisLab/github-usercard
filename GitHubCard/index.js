@@ -80,7 +80,7 @@ cardsContainer.appendChild(createProfileCard(prop.data))
 
 */
 
-function createProfileCard(obj){
+function createProfileCard(obj){  //obj = argument
   
 const cards= document.createElement('div');
 const img = document.createElement('img');
@@ -100,11 +100,15 @@ cards.appendChild(cardInfo);
 cardInfo.appendChild(h3);
 cardInfo.appendChild(puser);
 cardInfo.appendChild(plocation);
+
+
 cardInfo.appendChild(pprofile);
+pprofile.textContent = 'Profile: ';
 pprofile.appendChild(alink)
 cardInfo.appendChild(pfollowers);
 cardInfo.appendChild(pfollowing);
 cardInfo.appendChild(pbio);
+
 
 cards.classList.add('card');
 cardInfo.classList.add('card-info')
@@ -113,8 +117,22 @@ puser.classList.add('username');
 
 
 
+
 img.src= obj.avatar_url;
+h3.textContent = obj.name;
 puser.textContent = obj.login;
+plocation.textContent = `Location: ${obj.location || "none"}`;
+
+//
+alink.href = obj.html_url;
+alink.textContent = obj.html_url;
+//
+
+pfollowers.textContent = `Followers: ${obj.followers}`;
+pfollowing.textContent = `Following: ${obj.following}`;
+pbio.textContent = obj.bio;
+
+
  console.log('data')
 
  return cards;
