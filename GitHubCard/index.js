@@ -1,11 +1,40 @@
+const cardsContainer = document.querySelector('.cards');
+
 /* Step 1: using axios, send a GET request to the following URL 
            (replacing the palceholder with your Github name):
            https://api.github.com/users/<your name>
 */
-const promise = axios.get(`https://api.github.com/users/ebislab`)
 
-promise.then(data => {
+const folks = [ 
+  axios.get(`https://api.github.com/users/A-powell`), 
+axios.get(`https://api.github.com/users/dustinmyers`),
+axios.get(`https://api.github.com/users/justsml`), 
+axios.get(`https://api.github.com/users/luishrd`), 
+axios.get(`https://api.github.com/users/bigknell`),
+axios.get(`https://api.github.com/users/ebislab`)
+]
+
+// const user = 'ebislab'
+// const promise = axios.get(`https://api.github.com/users/${user}`)
+
+
+Promise.all(folks)
+.then( 
+  data => {
   console.log('response', data)
+  //const images = data.data.avatar_url;
+  //console.log(images);
+data.forEach(prop => {
+    //console.log('hi')
+// const el = createProfileCard(imageUrl, user);
+cardsContainer.appendChild(createProfileCard(prop.data))
+ })
+
+}
+)
+
+.catch(error => {
+  console.log('Something is down, idk', error)
 })
 
 /* Step 2: Inspect and study the data coming back, this is YOUR 
@@ -50,7 +79,9 @@ promise.then(data => {
 </div>
 
 */
-const cardsContainer = document.querySelector('.cards');
+
+function createProfileCard(obj){
+  
 const cards= document.createElement('div');
 const img = document.createElement('img');
 const cardInfo= document.createElement('div');
@@ -76,18 +107,18 @@ cardInfo.appendChild(pfollowing);
 cardInfo.appendChild(pbio);
 
 cards.classList.add('card');
-//img.src=`${imageUrl}`
-//cardInfo.classList.add('card-info')
+cardInfo.classList.add('card-info')
+h3.classList.add('name');
+puser.classList.add('username');
 
 
 
+img.src= obj.avatar_url;
+puser.textContent = obj.login;
+ console.log('data')
+
+ return cards;
+
+}
 
 
-
-/* List of LS Instructors Github username's: 
-  tetondan
-  dustinmyers
-  justsml
-  luishrd
-  bigknell
-*/
